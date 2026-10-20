@@ -1,15 +1,67 @@
+---
+title: Open SaaS Tools
+tags: [tools, bash, diff, patch, devops, scripting]
+category: tools
+created: 2024-01-01
+updated: 2026-10-20
+source: external
+type: index
+status: stable
+lifecycle: active
+---
+
 # Open SaaS Tools
 
-## dope.sh - Diff Or Patch Executor
+---
 
-The `dope.sh` script allows you to easily create a diff between two projects (base and derived),
-or to patch those diffs onto the base project to get the derived one. This is useful when a derived
-project has only small changes on top of the base project and you want to keep it in a directory
-in the same repo as the main project.
+## 💡 概述
 
-Since derived apps (like `opensaas-sh` and `template-test`) are just the Open SaaS template with some small tweaks,
-and we want to keep them up to date as the template changes, we don't version the actual app code in git.
-Instead, we version the diffs between it and the template in an `opensaas-sh/app_diff/` directory.
+Utility scripts for the Open SaaS monorepo, primarily the `dope.sh` (Diff Or Patch Executor) tool. This tool enables maintaining derived applications (like `opensaas-sh` and `template-test`) as small diffs on top of the base Open SaaS template, keeping them in the same repo without duplicating code.
+
+Since derived apps (like `opensaas-sh` and `template-test`) are just the Open SaaS template with some small tweaks, and we want to keep them up to date as the template changes, we don't version the actual app code in git. Instead, we version the diffs between it and the template in an `opensaas-sh/app_diff/` directory.
+
+---
+
+## ⚡ 功能
+
+- 📦 **Diff creation** -- generate minimal `.diff` files capturing changes between base and derived directories
+- 🩹 **Patch application** -- apply `.diff` files onto a base directory to recreate a derived directory
+- 📋 **File copying** -- `.copy` files for binary assets that can't be diffed
+- 🍎 **macOS support** -- auto-detects macOS and uses GNU tools (`gpatch`, `grealpath`, `gdiff`)
+
+---
+
+## 📊 指標
+
+「待補充」
+
+---
+
+## 🏛️ 设计
+
+### dope.sh - Diff Or Patch Executor
+
+The `dope.sh` script allows you to easily create a diff between two projects (base and derived), or to patch those diffs onto the base project to get the derived one. This is useful when a derived project has only small changes on top of the base project and you want to keep it in a directory in the same repo as the main project.
+
+### Diff structure
+
+The diff directory can contain `.diff` files to patch files from the base directory, and `.copy` files to copy files directly from the diff directory to the derived directory (useful for binary files).
+
+---
+
+## 📁 目录
+
+「待補充」
+
+---
+
+## 🔗 资源
+
+「待補充」
+
+---
+
+## 🚀 快速开始
 
 ### Usage
 
@@ -24,12 +76,6 @@ Instead, we version the diffs between it and the template in an `opensaas-sh/app
   - `patch`: Applies existing diffs onto the base directory to recreate the derived directory
 
 The diffs are stored in a directory named `<DERIVED_DIR>_diff/` (e.g., `derived/app_diff/` or `opensaas-sh/app_diff/`).
-
-### Diff structure
-
-The diff directory can contain `.diff` files to patch files from the base directory,
-and `.copy` files to copy files directly from the diff directory to the derived directory
-(useful for binary files).
 
 ### Workflow
 
@@ -68,3 +114,13 @@ brew install diffutils
 ```
 
 The script automatically detects macOS and uses `gpatch` instead of the default `patch` command.
+
+---
+
+## ⚙️ 技术栈
+
+- Bash shell scripting
+- GNU coreutils (`grealpath`)
+- GNU patch (`gpatch`)
+- GNU diffutils
+- Homebrew (macOS dependency management)

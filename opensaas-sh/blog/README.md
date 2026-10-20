@@ -1,11 +1,46 @@
+---
+title: Open SaaS Docs and Blog
+tags: [astro, starlight, docs, blog, documentation]
+category: documentation
+created: 2024-11-01
+updated: 2026-10-20
+source: external
+type: index
+status: stable
+lifecycle: active
+---
+
 # Open SaaS Docs and Blog
 
-This is the docs and blog for the [OpenSaaS.sh](https://opensaas.sh/) website, [![Built with Starlight](https://astro.badg.es/v2/built-with-starlight/tiny.svg)](https://starlight.astro.build)
+---
 
+## 💡 概述
 
-## 🚀 Project Structure
+This is the docs and blog for the [OpenSaaS.sh](https://opensaas.sh/) website, built with Astro and the Starlight documentation framework. It covers both the documentation site (docs) and blog content, served as part of the Open SaaS template ecosystem.
 
-Inside of your Astro + Starlight project, you'll see the following folders and files:
+---
+
+## ⚡ 功能
+
+- 📖 **Documentation site** -- structured docs powered by Starlight, looking for `.md`/`.mdx` files in `src/content/docs/`
+- 📝 **Blog** -- blog posts in `src/content/docs/blog/`, authored in MDX with support for custom components
+- 🖼️ **OG Image generation** -- `HeadWithOGImage` component auto-detects banner images for social media previews
+- 🎨 **Banner images** -- `TitleWithBannerImage` renders cover images above blog titles, togglable via `hideBannerImage` frontmatter
+- 🎬 **Video embedding** -- `VideoPlayer` wrapper component with responsive width props (`lgWidth`, `smWidth`)
+- 🧭 **Custom header** -- `MyHeader` repositions nav links and adds logo + home link to opensaas.sh
+- 🖼️ **Asset optimization** -- Astro `Image` component for automatic image optimization
+
+---
+
+## 📊 指標
+
+「待補充」
+
+---
+
+## 🏛️ 设计
+
+### Project Structure
 
 ```
 .
@@ -35,7 +70,7 @@ Static assets, like favicons and banner images, can be placed in the `public/` d
 
 We have a number of custom components in `src/components/` that you can use in your blog posts and docs.
 
-##  Custom Components
+### Custom Components
 
 Custom components in the `src/components/` that replace default Starlight components are imported into the `astro.config.mjs` file:
 
@@ -60,7 +95,7 @@ import VideoPlayer from '../../../components/VideoPlayer.astro';
 
 ### HeadWithOGImage
 
-This component is used to generate the Open Graph (OG) meta tags for the social media preview images for each doc and blog post. 
+This component is used to generate the Open Graph (OG) meta tags for the social media preview images for each doc and blog post.
 
 It checks if a banner image exists in `./public/banner-images` with the same name as the blog post but with a `.webp` extension, e.g. if the blog post is `2024-12-10-open-saas-tutorial.mdx`, it checks for `./public/banner-images/2024-12-10-open-saas-tutorial.webp`. If it does, it uses that image. If it doesn't, it uses the default banner image.
 
@@ -109,8 +144,33 @@ This component is a wrapper around the `Header` component from the `@astrojs/sta
 
 It repositions the docs and blog links to the left, and adds a logo and a link to the home page, https://opensaas.sh.
 
+---
 
-## Authoring Content
+## 📁 目录
+
+- `public/` -- static assets, favicons, banner images
+- `src/assets/` -- images and assets embedded with relative links
+- `src/components/` -- custom Astro components (HeadWithOGImage, TitleWithBannerImage, VideoPlayer, MyHeader)
+- `src/content/docs/` -- Markdown/MDX documentation and blog content
+- `src/content/docs/blog/` -- blog posts in MDX
+- `src/content/docs/guides/` -- guide documentation
+- `astro.config.mjs` -- Astro + Starlight configuration, component overrides, blog plugin authors
+- `package.json` -- project dependencies and scripts
+- `tsconfig.json` -- TypeScript configuration
+
+---
+
+## 🔗 资源
+
+- [OpenSaaS.sh](https://opensaas.sh/)
+- [Built with Starlight](https://starlight.astro.build)
+- [VSCode MDX extension](https://marketplace.cursorapi.com/items?itemName=unifiedjs.vscode-mdx)
+
+---
+
+## 🚀 快速开始
+
+### Writing Blog Posts
 
 The docs and blog are written in Markdown or MDX with some additional metadata:
 
@@ -130,6 +190,7 @@ authors: vince
 Most posts are written in MDX, which allows you to use jsx components in your blog posts. It's recommended to use the MDX extension for your editor, such as this one for [VSCode](https://marketplace.cursorapi.com/items?itemName=unifiedjs.vscode-mdx).
 
 ### Blog Post Metadata
+
 `authors` is required and will display the authors of the blog post. To configure a new author, add the proper metadata to `astro.config.mjs` under plugins > starlightBlog > authors:
 
 ```js
@@ -164,8 +225,17 @@ import myImage from '../../../assets/my-image.jpg';
 <Image src={myImage} alt="My Image" />
 ```
 
-## Video
+### Video
 
 Videos to be used in blog posts are stored in `./src/assets/` and are referenced in the blog posts with a relative path, just like images.
 
 Always use the `VideoPlayer` component to embed videos in your blog posts. See the [VideoPlayer component](#videoplayer) section for more information.
+
+---
+
+## ⚙️ 技术栈
+
+- [Astro](https://astro.build) + [Starlight](https://starlight.astro.build)
+- MDX for blog posts and docs
+- TypeScript
+- Custom Astro components for OG images, banners, video, and header
